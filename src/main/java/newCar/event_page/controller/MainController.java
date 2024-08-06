@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import newCar.event_page.model.dto.EventTimeDTO;
+import newCar.event_page.model.dto.PersonalityTestDTO;
 import newCar.event_page.service.EventService;
 import newCar.event_page.service.QuizService;
 import newCar.event_page.service.RacingService;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/main")
@@ -30,4 +33,9 @@ public class MainController {
         return ResponseEntity.ok(eventService.getEventTime());
     }
 
+    @GetMapping("/personality-test-list")
+    @Operation(summary = "레이싱 게임 유형검사")
+    public ResponseEntity<List<PersonalityTestDTO>> getPersonalities() {
+        return ResponseEntity.ok(racingService.getPersonalityTestList());
+    }
 }

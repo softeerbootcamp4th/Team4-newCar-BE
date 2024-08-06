@@ -54,7 +54,6 @@ public class EventService {
                 .orElseThrow(() -> new NoSuchElementException("공통 이벤트 정보가 존재하지 않습니다."));
 
         return EventTimeDTO.toDTO(eventCommon);
-
     }
 
     private void putDummyIfRequired(long duration) {
