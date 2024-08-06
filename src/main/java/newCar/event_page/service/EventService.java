@@ -2,6 +2,7 @@ package newCar.event_page.service;
 
 import lombok.RequiredArgsConstructor;
 import newCar.event_page.model.dto.EventCommonDTO;
+import newCar.event_page.model.dto.EventTimeDTO;
 import newCar.event_page.model.entity.event.EventCommon;
 import newCar.event_page.model.entity.event.EventId;
 import newCar.event_page.model.entity.event.quiz.Quiz;
@@ -45,6 +46,15 @@ public class EventService {
         updateQuiz(eventCommonDTO.getStartTime().toLocalDate() , duration);
 
         return EventCommonDTO.toDTO(eventCommon);
+    }
+
+    @Transactional(readOnly = true)
+    public EventTimeDTO getEventTime(){
+        EventCommon eventCommon = eventCommonRepository.findById(1L)
+                .orElseThrow(() -> new NoSuchElementException("공통 이벤트 정보가 존재하지 않습니다."));
+
+        return EventTimeDTO.toDTO(eventCommon);
+
     }
 
     private void putDummyIfRequired(long duration) {
