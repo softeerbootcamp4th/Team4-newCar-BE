@@ -3,7 +3,9 @@ package newCar.event_page.repository.quiz;
 import newCar.event_page.model.entity.event.quiz.Quiz;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 
 public interface QuizRepository extends JpaRepository<Quiz,Long> {
@@ -11,4 +13,6 @@ public interface QuizRepository extends JpaRepository<Quiz,Long> {
     List<Quiz> findAllByOrderByPostDateAsc();
 
     List<Quiz> findAllByOrderByIdAsc();
+
+    Optional<Quiz> findByPostDate(LocalDate postDate);
 }
