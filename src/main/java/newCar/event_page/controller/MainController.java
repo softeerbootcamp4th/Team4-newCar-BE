@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import newCar.event_page.model.dto.EventTimeDTO;
 import newCar.event_page.model.dto.PersonalityTestDTO;
+import newCar.event_page.model.dto.UserQuizDTO;
+import newCar.event_page.model.entity.event.EventId;
 import newCar.event_page.service.EventService;
 import newCar.event_page.service.QuizService;
 import newCar.event_page.service.RacingService;
@@ -37,5 +39,11 @@ public class MainController {
     @Operation(summary = "레이싱 게임 유형검사")
     public ResponseEntity<List<PersonalityTestDTO>> getPersonalities() {
         return ResponseEntity.ok(racingService.getPersonalityTestList());
+    }
+
+    @GetMapping("/quiz")
+    @Operation(summary = "해당하는 날짜에 맞는 선착순 퀴즈 정보를 Get 한다")
+    public ResponseEntity<UserQuizDTO> getQuiz(){
+        return ResponseEntity.ok(quizService.getQuiz(EventId.Quiz.getValue()));
     }
 }
